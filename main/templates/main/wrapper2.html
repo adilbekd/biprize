@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lange="en">
+
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-widt, initial-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<title>Page Title</title>
+	<style>
+		h1{
+			font-size: 40px;
+			text-align: center;
+			margin-top: 40px;
+		}
+		h5{
+			color: black;
+		}
+		table{
+			width: 100px;
+			align-items: center;
+			background-color: silver;
+			opacity: 0.5;
+		}
+		body{
+		  /* The image used */
+			
+
+		  /* Full height */
+		  height: 100%; 
+
+		  /* Center and scale the image nicely */
+		  background-position: center;
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		}		
+	</style>
+			<script>
+			// Set the date we're counting down to
+			var countDownDate = new Date().getTime();
+
+			// Update the count down every 1 second
+			var x = setInterval(function() {
+
+			  // Get todays date and time
+			  var now = new Date().getTime();
+			    
+			  // Find the distance between now and the count down date
+			  var distance = 61000-(now-countDownDate);
+			    
+			  // Time calculations for days, hours, minutes and seconds
+
+			  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			    
+			  // Output the result in an element with id="demo"
+			  document.getElementById("demo").innerHTML = minutes+' m '+seconds+' s';
+			  // If the count down is over, write some text 
+			  if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("demo").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+			</script>	
+</head>
+<header>
+	<h1> Таблица победителей </h1>
+</header>
+<body background="{% static 'image/win.jpg' %}">
+	<p id="demo"></p>
+</body>
+</html>

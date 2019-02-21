@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-widt, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<title>BI Prize</title>
+	<style>
+		img{
+			width: 100px;
+			height: 100px; 
+			margin: auto;
+		}
+		#demo{
+			font-family: "Courier", Times, serif;
+			font-size: 40px;
+			margin-top: 10px;
+			margin-bottom: 0px;
+			color: black;
+		}
+		h2,h3,h4{
+			color: white;
+			font-family: "Courier", Times, serif;
+		}
+	</style>
+	{% load staticfiles %}
+</head>
+<header>
+	<div class="jumbotron" style="padding-bottom: 10px; background: #5bc0de">
+    	<div class="container" align="middle" >
+    		<table class="table table-hover">
+    			<tr class="success">
+    				<td class="success"><h2>1</h2></td>
+    				<td class="active" align="center"><img src="/static/image/img01.jpg" alt="DODO_PIZZA_GIFT" class="rounded-circle"></td>
+  					<td class="success"><h2>Adilbek</h2></td>
+    			</tr>
+    			<tr class="active">
+    				<td class="success"><h3>2</h3></td>
+    				<td class="active" align="center" ><img src="/static/image/img01.jpg" alt="DODO_PIZZA_GIFT" class="rounded-circle"style="width: 80px;height: 80px"></td>
+  					<td class="success"><h3>DoDo Pizza</h3></td>
+    			</tr>
+    			<tr class="active">
+    				<td class="success"><h4>3</h4></td>
+    				<td class="active" align="center"><img src="/static/image/img01.jpg" alt="DODO_PIZZA_GIFT" class="rounded-circle" style="width: 60px;height: 60px" ></td>
+  					<td class="success"><h4>Technodom</h4></td>
+    			</tr>
+			</table>
+    		<p id="demo"></p>
+			<script>
+			// Set the date we're counting down to
+			var countDownDate = new Date("Feb 23, 2019 15:37:25").getTime();
+
+			// Update the count down every 1 second
+			var x = setInterval(function() {
+
+			  // Get todays date and time
+			  var now = new Date().getTime();
+			    
+			  // Find the distance between now and the count down date
+			  var distance = countDownDate - now;
+			    
+			  // Time calculations for days, hours, minutes and seconds
+
+			  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			    
+			  // Output the result in an element with id="demo"
+			  document.getElementById("demo").innerHTML = minutes+' m '+seconds+' s';
+			  // If the count down is over, write some text 
+			  if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("demo").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+			</script>
+
+    	</div>
+  </div>
+</header>
+<body>
+	<div class="container" align="middle">
+		<form class="form-horizontal" action="{% url 'winners' %}" method="post">
+			{% csrf_token %}
+		  <div class="form-group" style="width:400px">
+		    <div class="col-sm-10" >
+		      <input type="name" class="form-control" id="inputName" placeholder="ИМЯ" name="name">
+		    </div>
+		  </div>
+
+		  <div class="form-group" style="width:400px">
+		    <div class="col-sm-10" >
+		      <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
+		    </div>
+		  </div>
+
+		  <div class="form-group" style="width:400px">
+		    <div class="col-sm-10" >		  
+				<select class="form-control" name="city">
+				  <option>Астана</option>
+				  <option>Алматы</option>
+				  <option>Атырау</option>
+				</select>
+		    </div>
+		  </div>
+		  <div class="form-group" style="width:400px">
+		    <div class="col-sm-10" >
+				<input type="hidden" id="demo2" name="time" value="jj">
+			</div>
+		</div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-success" onclick="click()">Участвовать в розыгрыше</button>
+		      <script>
+			        function click() {
+			        	console.log(document.getElementById("demo").value);
+			            document.getElementById("demo2").value = document.getElementById("demo").value;
+			        }		      	
+		      </script>
+		    </div>
+		  </div>
+		</form>	
+	</div>
+</body>
+<footer>
+  <div class="container" align="middle">
+    <hr>BI Club
+    &copy; Все права защищены 2019
+  </div>
+</footer>
+</html> 
